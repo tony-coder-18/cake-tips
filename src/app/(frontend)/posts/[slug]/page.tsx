@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { urlFor } from "@/sanity/lib/image";
 import Image from "next/image";
+import { PortableText } from "next-sanity";
 
 export default async function Page({
   params,
@@ -31,6 +32,13 @@ export default async function Page({
         ) : null}
       <h1 className="text-4xl font-bold text-balance">{post?.title}</h1>
       <hr />
+      
+      {post?.body ? (
+        <div className="prose dark:prose-invert">
+          <PortableText value={post.body} />
+        </div>
+      ) : null}
+      
       <Link href="/posts">&larr; Return to index</Link>
     </main>
   );
